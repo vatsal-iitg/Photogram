@@ -9,17 +9,14 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="text-center text-uppercase mb-3">
-                        Sign-In
+                        Sign-Up
                     </h4>
                     <form method="POST">
                         {% csrf_token %}
-                        {% bootstrap_form_errors form %}
-                        <!-- {% bootstrap_label "Email" %} -->
-                        {% bootstrap_field form.username show_label="False" placeholder="Email" %}
-                        {% bootstrap_field form.password %}
-                        <button class="btn btn-warning btn-block">Sign In</button>
+                        {% bootstrap_form form %}
+                        <button type="submit" class="btn btn-warning btn-block">Sign Up</button>
                         <p class="text-center mt-3">
-                            Don't have an account? <a href="/sign-up/"><b>Sign Up</b></a>
+                            Already have an account? <a href="/sign-in/"><b>Sign In</b></a>
                         </p>
                     </form>
                 </div>
