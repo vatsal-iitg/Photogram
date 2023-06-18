@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'socialfeed', # added social feed app
+    'crispy_forms', # added crispy forms app
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -4,7 +4,7 @@ from .import forms
 
 # Create your views here.
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'core/home.html')
 
 def sign_up(request):
     form = forms.SignUpForm()
@@ -19,8 +19,8 @@ def sign_up(request):
             user.save()
 
             login(request,user)
-            return redirect('/') 
+            return redirect('/socialfeed') # redirecting to the social feed 
 
-    return render(request, 'sign_up.html',{
+    return render(request, 'core/sign_up.html',{
         'form': form
     })
