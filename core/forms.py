@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from .models import UserProfile
 
 class SignUpForm(UserCreationForm):
     email = forms.EmailField(max_length=250)
@@ -17,3 +18,14 @@ class SignUpForm(UserCreationForm):
         if User.objects.filter(email=email):
             raise ValidationError("This email address already exists.")
         return email
+
+
+class BasicUserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name','last_name')
+    
+class BasicProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ('avatar','bio','location','gender')
