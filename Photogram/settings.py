@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'bootstrap5',
+    'DM'
 ]
 
 MIDDLEWARE = [
@@ -135,7 +136,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap5'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 # Added to static and media to load images
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 LOGIN_URL = 'sign-in/' #redirect to sign in page if not authenticated
 LOGIN_REDIRECT_URL = '/'
 
