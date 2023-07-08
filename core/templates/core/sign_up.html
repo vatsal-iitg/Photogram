@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% load static %}
 {% load bootstrap5 %}
 <!-- modified as per figma design  -->
@@ -23,13 +24,23 @@
   />
   <body>
    
+=======
+{% extends 'core/base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+>>>>>>> 2cf088b9dfe183ee88112c64429bcd749f1f8b01
 
 <div class="container-fluid mt-5">
     <div class="row justify-content-center">
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-body">
+<<<<<<< HEAD
                     <h4 class="text-center text-uppercase mb-3 heading">
+=======
+                    <h4 class="text-center text-uppercase mb-3">
+>>>>>>> 2cf088b9dfe183ee88112c64429bcd749f1f8b01
                         Sign-Up
                     </h4>
                     <form method="POST">
@@ -37,7 +48,11 @@
                         {% bootstrap_form form %}
                         <button type="submit" class="btn btn-warning btn-block">Sign Up</button>
                         <p class="text-center mt-3">
+<<<<<<< HEAD
                             Already have an account? <a href="{% url 'sign-in' %}" class="btn btn-danger mx-2">Sign In</a>
+=======
+                            Already have an account? <a href="/sign-in/"><b>Sign In</b></a>
+>>>>>>> 2cf088b9dfe183ee88112c64429bcd749f1f8b01
                         </p>
                     </form>
                 </div>
@@ -45,8 +60,12 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD
 </body>
 <script src="https://unpkg.com/scrollreveal"></script>
 <script src="{% static 'js/signin.js'%}"></script>
 
 </html>
+=======
+{% endblock %}
+>>>>>>> 2cf088b9dfe183ee88112c64429bcd749f1f8b01

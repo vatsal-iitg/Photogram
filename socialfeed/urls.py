@@ -1,7 +1,12 @@
 from django.urls import path
+<<<<<<< HEAD
 from .views import PostList,PostDetails,PostEditView,PostDeleteView,CommentDeleteView,ProfileView,ProfileEditView,AddFollower,RemoveFollower,AddLike,AddDislike,UserSearch,ListFollowers,AddCommentDislike,AddCommentLike,CommentReplyView, inbox , Directs, SendDirect, MessageSearch
 # imported all the views created in views.py
 
+=======
+from .views import PostList,PostDetails,PostEditView,PostDeleteView,CommentDeleteView # imported all the views created in views.py
+from core import views as core_views
+>>>>>>> 2cf088b9dfe183ee88112c64429bcd749f1f8b01
 
 urlpatterns = [
     path('',PostList.as_view(),name='post-list'), # directing to post_feed at localhost:{port}/socialfeed
@@ -11,6 +16,7 @@ urlpatterns = [
     path('post/delete/<int:pk>',PostDeleteView.as_view(),name='post-delete'),# directing to the post with the id = pk (primary key) for deleting that post, (a user can delete only his own post, taken care in templates folder's files)
     path('post/<int:post_pk>/comment/delete/<int:pk>',CommentDeleteView.as_view(),name='comment-delete'),
     # directing to the post with the id = post_pk (primary key) and comment id = pk, for deleting that comment, (a user can delete only comments on his own post, taken care in templates folder's files)
+<<<<<<< HEAD
 
     path('profile/<int:pk>',ProfileView.as_view(),name='profile'),
     path('profile/edit/<int:pk>',ProfileEditView.as_view(),name='profile-edit'),
@@ -35,4 +41,7 @@ urlpatterns = [
     path('send/', SendDirect, name="send-directs"),
     path('searchmessage/', MessageSearch, name="search-users"),
 
+=======
+     path('profile/', core_views.profile_page, name='profile'),
+>>>>>>> 2cf088b9dfe183ee88112c64429bcd749f1f8b01
 ]

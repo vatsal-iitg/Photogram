@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends 'core/base.html' %}
 {% load crispy_forms_tags %}
 {% load static %}
@@ -145,3 +146,63 @@
  <!-- for commentReplyToggle function -->
 <script type="text/javascript" src="{% static 'js/social.js' %}"></script>
 {% endblock %}
+=======
+{%extends 'core/base.html' %} {% load crispy_forms_tags %} {% block content %}
+
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-5 col-sm-6">
+      <a href="{% url 'post-list' %}" class="btn btn-light">Back</a>
+    </div>
+  </div>
+
+  <div class="row justify-content-center mt-3">
+    <div class="col-md-5 col-sm-12 border-bottom position-relative">
+      <h3>{{post.author}}</h3>
+      <h5>Created on - {{post.created_on}}</h5>
+
+
+      <!-- this part takes care user can update or delete only his own posts  -->
+      {% if request.user == post.author %}
+      <a href="{% url 'post-edit' post.pk%}" class="btn btn-primary">Edit</a>
+      <a href="{% url 'post-delete' post.pk%}" class="btn btn-danger">Delete</a>
+      {% endif %}
+
+      
+      <p>{{post.body}}</p>
+    </div>
+  </div>
+
+  <!-- this part takes care that user can add comments only on other people's posts  -->
+  {% if post.author != request.user %}
+  <div class="row justify-content-center mt-3 mb-5">
+    <div class="col-md-5 col-sm-12 border-bottom">
+      <form method="POST">
+        {% csrf_token %} {{form|crispy}}
+        <div class="d-grid gap-2 align-center">
+          <button class="btn btn-primary mt-3">Add comment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  {% endif %}
+  
+  
+  <!-- listing on the comments on the posts  -->
+  {% for c1 in comments %}
+  <div class="row justify-content-center mt-3">
+    <div class="col-md-5 col-sm-12 border-bottom">
+      <p><strong>{{c1.author}}</strong>{{c1.created_on}}</p>
+      <p>{{c1.comment}}</p>
+      <!-- users can delete their own comments on other people's posts  -->
+      {% if request.user == post.author %}
+      <a href="{% url 'comment-delete' post_pk=post.pk pk=c1.pk %}" class="btn btn-danger">Delete</a>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
+>>>>>>> 2cf088b9dfe183ee88112c64429bcd749f1f8b01

@@ -33,8 +33,13 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'socialfeed', # added social feed app
+<<<<<<< HEAD
     'crispy_forms', # added crispy forms app
     'fontawesome_5',
+=======
+    'crispy_forms',
+     'crispy_bootstrap5',  # added crispy forms app
+>>>>>>> 2cf088b9dfe183ee88112c64429bcd749f1f8b01
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'bootstrap5',
+    'DM'
 ]
 
 MIDDLEWARE = [
@@ -53,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'core.middleware.ProfileMiddlware',
 ]
 
 ROOT_URLCONF = 'Photogram.urls'
@@ -140,3 +147,13 @@ LOGIN_REDIRECT_URL = '/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+# Added to static and media to load images
+STATIC_URL = '/static/'
+LOGIN_URL = 'sign-in/' #redirect to sign in page if not authenticated
+LOGIN_REDIRECT_URL = '/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/media/'

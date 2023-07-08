@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% load static %}
 {% load bootstrap5 %}
 <!-- modified as per figma design  -->
@@ -27,11 +28,22 @@
 
 <div class="container-fluid mt-5">
     
+=======
+{% extends 'core/base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+
+<div class="container-fluid mt-5">
+>>>>>>> 2cf088b9dfe183ee88112c64429bcd749f1f8b01
     <div class="row justify-content-center">
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-body">
+<<<<<<< HEAD
                     <img src="{% static 'photogram_logo/logo.png' %}" alt="" class="logo"/>
+=======
+>>>>>>> 2cf088b9dfe183ee88112c64429bcd749f1f8b01
                     <h4 class="text-center text-uppercase mb-3">
                         Sign-In
                     </h4>
@@ -42,8 +54,13 @@
                         {% bootstrap_field form.username show_label="False" placeholder="Email" %}
                         {% bootstrap_field form.password %}
                         <button class="btn btn-warning btn-block">Sign In</button>
+<<<<<<< HEAD
                         <p class="text-center mt-3 para">
                             Don't have an account? <a href="{% url 'sign-up' %}" class="btn btn-danger mx-2">Sign Up</a>
+=======
+                        <p class="text-center mt-3">
+                            Don't have an account? <a href="/sign-up/"><b>Sign Up</b></a>
+>>>>>>> 2cf088b9dfe183ee88112c64429bcd749f1f8b01
                         </p>
                     </form>
                 </div>
@@ -51,8 +68,12 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD
   </body>
   <script src="https://unpkg.com/scrollreveal"></script>
   <script src="{% static 'js/signin.js'%}"></script>
 
 </html>
+=======
+{% endblock %}
+>>>>>>> 2cf088b9dfe183ee88112c64429bcd749f1f8b01

@@ -1,0 +1,70 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<br><br>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://kit.fontawesome.com/fc1e235b2e.js"></script>
+  <link rel="stylesheet" href="{% static 'assets2/style.css' %}">
+  <title>Instagram Login Form</title>
+</head>
+
+<body>
+
+  <div id="wrapper">
+    <div class="container">
+      <div class="phone-app-ddemo"></div>
+      <div class="form-data">
+        
+        <form action="" method="GET">
+            <div class="headedr__search">
+                <input type="text" placeholder="Search" name="q" value="{{ request.GET.q }}">
+                <button class="btn btn-primary" type="submit">Search</button>
+                
+            </div>
+        </form>
+
+        <form action="" method="POST" enctype="multipart/form-data">
+          <div class="logo">
+            <h3 style="padding-top: 5px; font-size: 20px;">Search Results</h3>
+          </div>
+
+        {% for user in users %}
+            <div class="side-menu__user-profile" style="text-align: start; border: solid rgba(192, 192, 192, 0.514) 1px; padding: 10px; border-radius: 25px;">
+                <a href="{% url 'profile' %}" class="side-menu__user-avatar">
+                    {% if user.userprofile.avatar.url %}
+                    <img src="{{ user.userprofile.avatar.url }}" alt="User Picture" class="rounded-circle mr-1" width="80" height="80">
+                    {% else %}
+                    <img src="{% static 'images/image.jpg' %}" alt="User Picture" class="rounded-circle mr-1" width="80" height="80">
+
+                    {% endif %}
+                </a>
+                <div class="side-menu__user-idnfo">
+                    <a href="##" style="font-size: 15px; color: black; text-align: center;">{{user.get_full_name }}</a>
+                    <br>
+                    <span style="font-size: 14px;">@{{user.username}}</span>
+                    <br>
+                    <a href="{% url 'directs' username=user.username %}" style="color: white;" class=" btn btn-primary side-menu__user-button">Direct Message</a>
+
+                </div>
+            </div>
+        {% endfor %}
+        
+          
+        </form>
+        
+      </div>
+    </div>
+
+  </div>
+
+</body>
+
+</html>
+{% endblock content %}

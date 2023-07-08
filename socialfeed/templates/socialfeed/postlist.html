@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {%extends 'core/base.html' %} 
 {% load crispy_forms_tags %} 
 {% load static %} 
@@ -90,5 +91,47 @@
   <h2 class="text-center">Follow other users to view their posts</h2>
 </div>
 {% endif %}
+=======
+{%extends 'core/base.html' %}
+{% load crispy_forms_tags %} 
+{% block content %}
+
+
+<div class="container">
+  <div class="row">
+    <h3 class="col-12 d-flex justify-content-center">Add a Post!</h3>
+  </div>
+  <a href="{% url 'profile' %}" class="btn btn-primary">My Profile</a>
+  <a href="{% url 'inbox' %}" class="btn btn-primary">Direct Message</a>
+  <!-- creating new post  -->
+  <div class="row justify-content-center mt-3 mb-5">
+    <div class="col-md-5 col-sm-12 border-bottom">
+      <form method="POST">
+        {% csrf_token %} {{form|crispy}}
+        <div class="d-grid gap-2 align-center">
+          <button class="btn btn-primary mt-3">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="container mt-3">
+    <h4 class="text-center">All Posts</h4>
+
+    <!-- listing all the posts  -->
+    {% for post in posts%}
+    <div class="row justify-content-center mt-3">
+      <div class="col-md-5 col-sm-12 border-bottom position-relative">
+        <h4>{{post.author}}</h4>
+        <small>Created on - {{post.created_on}}</small>
+        <p>{{post.body}}</p>
+
+        <!-- clicking on a post to view details  -->
+        <a href="{% url 'post-detail' post.pk %}" class="stretched-link"></a> 
+        <!-- sending to post details  -->
+      </div>
+    </div>
+    {%endfor%}
+  </div>
+>>>>>>> 2cf088b9dfe183ee88112c64429bcd749f1f8b01
 </div>
 {% endblock %}
