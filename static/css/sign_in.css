@@ -1,0 +1,34 @@
+*{
+    /* background-color: white; */
+}
+
+.card-body{
+    border: 4px solid white;
+    border-radius: 40px;
+    background-color: #F5E8E8;
+}
+.logo{
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 0.5rem;
+    width: 100px;
+}
+.logo{
+    animation:floatImage 4s ease-in-out infinite;
+  }
+  
+  @keyframes floatImage{
+    0%{
+        transform: translateY(0);
+    }
+    50%{
+        transform: translateY(-1rem);
+    }
+    100%{
+        transform: translateY(0);
+    }
+  }
+
+.heading, form{
+    background-color: #F5E8E8;
+}

@@ -10,11 +10,13 @@ class PostForm(forms.ModelForm):
             'rows':'3',
             'placeholder':'What are you upto ?'
         })
-    ) # only text body taken as input
+    ) 
+
+    image = forms.ImageField(required=False) # added image field
     
     class Meta:
         model = Post # connected to Post Model
-        fields = ['body'] # left it as textbody currently, will update to Pictures and Captions later 
+        fields = ['body','image'] # added image field also
 
 
 class CommentForm(forms.ModelForm):
@@ -25,8 +27,8 @@ class CommentForm(forms.ModelForm):
             'rows':'3',
             'placeholder':' Add comment'
         })
-    ) # only text body taken as input
+    ) 
     
     class Meta:
-        model = Comment # connected to Comment Model
+        model = Comment 
         fields = ['comment']

@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": "../Cp_practice_July_27_onwards/DSA"
+		},
+		{
+			"path": "../Cp_practice_July_27_onwards"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"ostream": "cpp"
+		}
+	}
+}
