@@ -33,13 +33,9 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'socialfeed', # added social feed app
-<<<<<<< HEAD
     'crispy_forms', # added crispy forms app
     'fontawesome_5',
-=======
-    'crispy_forms',
-     'crispy_bootstrap5',  # added crispy forms app
->>>>>>> 2cf088b9dfe183ee88112c64429bcd749f1f8b01
+    'crispy_bootstrap5',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,8 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
-    'bootstrap5',
-    'DM'
+    'bootstrap5'
 ]
 
 MIDDLEWARE = [

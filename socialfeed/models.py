@@ -1,18 +1,14 @@
 from django.db import models
 from django.utils import timezone # timezone imported
 from django.contrib.auth.models import User
-<<<<<<< HEAD
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.db.models import Max
 from django.forms import DateTimeField
-=======
->>>>>>> 2cf088b9dfe183ee88112c64429bcd749f1f8b01
 
 
 # Create your models here.
 class Post(models.Model):
-<<<<<<< HEAD
     body = models.TextField()
 
     # added image field 
@@ -24,11 +20,6 @@ class Post(models.Model):
     # added likes and dislikes field
     likes = models.ManyToManyField(User,blank=True,related_name='likes')
     dislikes = models.ManyToManyField(User,blank=True,related_name='dislikes')
-=======
-    body = models.TextField() # left it as textbody currently, will update to Pictures and Captions later 
-    created_on = models.DateTimeField(default=timezone.now) # timestamp
-    author = models.ForeignKey(User,on_delete=models.CASCADE) # which user owns the post
->>>>>>> 2cf088b9dfe183ee88112c64429bcd749f1f8b01
 
     class Meta:
         app_label='socialfeed' # for mentioning inside INSTALLED_APPS
@@ -41,7 +32,6 @@ class Comment(models.Model):
     post=  models.ForeignKey('Post',on_delete=models.CASCADE)
     # connected to the user who "owns" the post
 
-<<<<<<< HEAD
 
 
     # added likes and dislikes field
@@ -124,5 +114,3 @@ class Message(models.Model):
                 'unread': Message.objects.filter(user=user, reciepient__pk=message['reciepient'], is_read=False).count()
             })
         return users
-=======
->>>>>>> 2cf088b9dfe183ee88112c64429bcd749f1f8b01

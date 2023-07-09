@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from django.shortcuts import render,redirect, get_object_or_404
 from django.views import View
 from django.urls import reverse_lazy
@@ -8,40 +7,17 @@ from django.views.generic.edit import UpdateView,DeleteView
 from django.contrib.auth.mixins import UserPassesTestMixin,LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.db.models import Q
-
-
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
-=======
-from django.shortcuts import render,redirect
-
-from django.views import View # view imported
-
-from django.urls import reverse,reverse_lazy # for directing back to previous urls
-
-from .models import Post,Comment
-
-from .forms import PostForm,CommentForm # imported forms
-
-from django.views.generic.edit import UpdateView,DeleteView # these views are imported for east updation and deletion
-
-from django.contrib.auth.mixins import UserPassesTestMixin,LoginRequiredMixin # these views take care of the fact that user cannot update or delete posts which do not belong to him, even by manipulating the urls
-# from django.contrib.auth.decorators import login_required
-
->>>>>>> 2cf088b9dfe183ee88112c64429bcd749f1f8b01
 
 # Create your views here.
 class PostList(LoginRequiredMixin,View):
     def get(self,request,*args,**kwargs): # this function lists the views in the post feed
-<<<<<<< HEAD
         logged_in_user=request.user
         posts = Post.objects.filter(
             author__profile__followers__in=[logged_in_user.id]
         ).order_by('-created_on')
-=======
-        posts = Post.objects.all().order_by('-created_on')
->>>>>>> 2cf088b9dfe183ee88112c64429bcd749f1f8b01
         # ordering by latest posts
 
         form = PostForm()
@@ -54,7 +30,6 @@ class PostList(LoginRequiredMixin,View):
         # postlist template has html code with for loops for showing all posts
 
     def post(self,request,*args,**kwargs):
-<<<<<<< HEAD
         logged_in_user=request.user
         # creating new post and adding to the social feed
         posts = Post.objects.filter(
@@ -62,11 +37,6 @@ class PostList(LoginRequiredMixin,View):
         ).order_by('-created_on')
         # ordering by latest posts
         form = PostForm(request.POST,request.FILES)
-=======
-        # creating new post and adding to the social feed
-        posts = Post.objects.all().order_by('-created_on')
-        form = PostForm(request.POST)
->>>>>>> 2cf088b9dfe183ee88112c64429bcd749f1f8b01
 
         if form.is_valid():
             new_post = form.save(commit=False)
@@ -119,7 +89,6 @@ class PostDetails(LoginRequiredMixin,View):# getting the details of the post
         return render(request,'socialfeed/postdetails.html',context)
 
 
-<<<<<<< HEAD
 class CommentReplyView(LoginRequiredMixin,View):
     def post(self,request,post_pk,pk,*args,**kwargs):
         post = Post.objects.get(pk=post_pk)
@@ -135,8 +104,6 @@ class CommentReplyView(LoginRequiredMixin,View):
 
         
         return redirect('post-detail',pk=post_pk)
-=======
->>>>>>> 2cf088b9dfe183ee88112c64429bcd749f1f8b01
 
 class PostEditView(LoginRequiredMixin,UserPassesTestMixin,UpdateView): # editing a post
     model = Post
@@ -173,7 +140,6 @@ class CommentDeleteView(LoginRequiredMixin,DeleteView):
     def get_success_url(self):
         pk =self.kwargs['post_pk']
         return reverse_lazy('post-detail',kwargs={'pk':pk})
-<<<<<<< HEAD
         
 
 
@@ -466,6 +432,3 @@ def MessageSearch(request):
             }
 
     return render(request, 'socialfeed/messagesearch.html', context)
-=======
-    
->>>>>>> 2cf088b9dfe183ee88112c64429bcd749f1f8b01

@@ -38,8 +38,8 @@
         {% for user in users %}
             <div class="side-menu__user-profile" style="text-align: start; border: solid rgba(192, 192, 192, 0.514) 1px; padding: 10px; border-radius: 25px;">
                 <a href="{% url 'profile' user.profile.pk %}" class="side-menu__user-avatar">
-                    {% if user.userprofile.avatar.url %}
-                    <img src="{{ user.userprofile.avatar.url }}" alt="User Picture" class="rounded-circle mr-1" width="80" height="80">
+                    {% if user.profile.avatar.url %}
+                    <img src="{{ user.profile.avatar.url }}" alt="User Picture" class="rounded-circle mr-1" width="80" height="80">
                     {% else %}
                     <img src="{% static 'images/image.jpg' %}" alt="User Picture" class="rounded-circle mr-1" width="80" height="80">
 

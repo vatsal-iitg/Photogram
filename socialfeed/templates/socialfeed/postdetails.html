@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {% extends 'core/base.html' %}
 {% load crispy_forms_tags %}
 {% load static %}
@@ -12,40 +11,58 @@
     </div>
 
     <div class="row justify-content-center mt-3">
-        <div class="col-md-5 col-sm-12 border-bottom">
-                <div>
-                    <a href="{% url 'profile' post.author.profile.pk %}">
-                        <img class="round-circle post-img" height="30" width="30" src="{{ post.author.profile.picture.url }}" />
-                    </a>
-                    <p class="post-text">
-                        <a class="text-primary post-link" href="{% url 'profile' post.author.profile.pk %}">@{{ post.author }}</a> {{ post.created_on }}
-                    </p>
-                </div>
-                {% if request.user == post.author %}
-                    <a href="{% url 'post-edit' post.pk %}" class="edit-color btn btn-primary">Edit</a>
-                    <a href="{% url 'post-delete' post.pk %}" class="edit-color btn btn-danger">Delete</a>
-                {% endif %}
-            <p>{{ post.body }}</p>
-
+        <div class="card" style="width: 30rem;padding-top: 1rem; background-color: #F5E8E8;">
+          <a href="{% url 'profile' post.author.profile.pk %}" class="text-primary" style="text-decoration: none;margin-bottom: 1rem; color: inherit !important; font-weight: bold !important;">
+            {% if post.author.profile.name %}
+            {{post.author.profile.name}}
+          {% else %}
+          {{post.author}}
+          {% endif %}
+        </a>
+          {% if post.image %}
+          <img src="{{ post.image.url }}" alt="" class="post-image" style="max-width: 100%; height: auto;">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title"><b>
+              {% if post.author.profile.name %}
+            {{post.author.profile.name}}
+          {% else %}
+          {{post.author}}
+          {% endif %}
+            </b> <small>{{post.body}}</small></h5>
             <div class="d-flex flex-row">
-                <form method="POST" action="{% url 'like' post.pk %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="next" value="{{ request.path }}">
-                    <button class="remove-default-btn" type="submit">
-                        Like <span>{{ post.likes.all.count }}</span></i>
-                    </button>
-                </form>
-
-                <form method="POST" action="{% url 'dislike' post.pk %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="next" value="{{ request.path }}">
-                    <button class="remove-default-btn" type="submit">
-                        Dislike <span>{{ post.dislikes.all.count }}</span></i>
-                    </button>
-                </form>
+    
+              <form method="POST" action="{% url 'like' post.pk %}">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.path }}">
+                <button style="background-color: transparent;border: none;box-shadow: none;" type="submit">
+                  <i class='bx bx-like like-icon' ></i>
+                </button>
+                <span>{{post.likes.all.count}}</span>
+              </form>
+              
+              
+              <form method="POST" action="{% url 'dislike' post.pk %}">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.path }}">
+                <button style="background-color: transparent;border: none;box-shadow: none;" type="submit">
+                  <i class='bx bx-dislike like-icon' ></i>
+                  <span>{{post.dislikes.all.count}}</span>
+                </button>
+              </form>
+        
+            </div>
+    
+            <small>{{post.created_on}}</small>
+            {% if post.author == request.user %}
+            <div class="buttons">
+                <a href="{% url 'post-edit' post.pk %}" class="btn btn-success"><i class='bx bx-edit-alt'></i></a>
+                <a href="{% url 'post-delete' post.pk %}" class="btn btn-danger"><i class='bx bx-trash' ></i></i></a>
+            </div>
+            {% endif %}
+          </div>
         </div>
-        </div>
-    </div>
+      </div>
 
     <div class="row justify-content-center mt-3 mb-5">
         <div class="col-md-5 col-sm-12">
@@ -64,14 +81,20 @@
     <!-- parent means comment to the post  -->
     {% if comment.is_parent %} 
     <div class="row justify-content-center mt-3 mb-5">
-        <div class="col-md-5 col-sm-12 border-bottom">
+        <div class="col-md-5 col-sm-12 border-bottom" style="background-color: #F5E8E8;border-radius: 20px;padding: 10px;">
             <p>
-                <div>
+                <div class="d-flex" style="gap: 20px;">
                     <a href="{% url 'profile' comment.author.profile.pk %}">
-                        <img class="round-circle post-img" height="30" width="30" src="{{ comment.author.profile.picture.url }}" />
+                        <img class="post-img rounded-circle" height="30" width="30" src="{{ comment.author.profile.avatar.url }}" />
                     </a>
                     <p class="post-text">
-                        <a class="text-primary post-link" href="{% url 'profile' comment.author.profile.pk %}">@{{ comment.author }}</a> {{ comment.created_on }}
+                        <a class="text-primary post-link" href="{% url 'profile' comment.author.profile.pk %}" style="text-decoration: none !important; color: inherit !important;font-weight: bold;">
+                            {% if comment.author.profile.name %}
+                            {{comment.author.profile.name}}
+                            {% else %}
+                            {{comment.author.profile}}
+                            {% endif %}
+                        </a> {{ comment.created_on }}
                     </p>
                 </div>
                 <!-- can delete your comment on other's posts  -->
@@ -121,15 +144,21 @@
 
 <!-- showing all the comment replies with a slight shift to the left  -->
     {% for child_comment in comment.children %}
-    <div class="row justify-content-center mt-3 mb-5 child-comment" style="margin-left:40px;">
-        <div class="col-md-5 col-sm-12 border-bottom">
+    <div class="row justify-content-center mt-3 mb-5 child-comment" style="margin-left:50px;">
+        <div class="col-md-5 col-sm-12 border-bottom" style="background-color: #F5E8E8;border-radius: 20px;padding: 10px;">
             <p>
-                <div>
+                <div class="d-flex" style="gap:20px;">
                     <a href="{% url 'profile' child_comment.author.profile.pk %}">
-                        <img class="round-circle post-img" height="30" width="30" src="{{ child_comment.author.profile.picture.url }}" />
+                        <img class="rounded-circle post-img" height="30" width="30" src="{{ child_comment.author.profile.avatar.url }}" />
                     </a>
                     <p class="post-text">
-                        <a class="text-primary post-link" href="{% url 'profile' child_comment.author.profile.pk %}">@{{ child_comment.author }}</a> {{ child_comment.created_on }}
+                        <a class="text-primary post-link" href="{% url 'profile' child_comment.author.profile.pk %}"  style="text-decoration: none !important; color: inherit !important;font-weight: bold;">
+                            {% if child_comment.author.profile.name %}
+                            {{child_comment.author.profile.name}}
+                            {% else %}
+                            {{child_comment.author.profile}}
+                            {% endif %}
+                        </a> {{ child_comment.created_on }}
                     </p>
                 </div>
                 {% if request.user == child_comment.author %}
@@ -146,63 +175,3 @@
  <!-- for commentReplyToggle function -->
 <script type="text/javascript" src="{% static 'js/social.js' %}"></script>
 {% endblock %}
-=======
-{%extends 'core/base.html' %} {% load crispy_forms_tags %} {% block content %}
-
-<div class="container">
-  <div class="row mt-5">
-    <div class="col-md-5 col-sm-6">
-      <a href="{% url 'post-list' %}" class="btn btn-light">Back</a>
-    </div>
-  </div>
-
-  <div class="row justify-content-center mt-3">
-    <div class="col-md-5 col-sm-12 border-bottom position-relative">
-      <h3>{{post.author}}</h3>
-      <h5>Created on - {{post.created_on}}</h5>
-
-
-      <!-- this part takes care user can update or delete only his own posts  -->
-      {% if request.user == post.author %}
-      <a href="{% url 'post-edit' post.pk%}" class="btn btn-primary">Edit</a>
-      <a href="{% url 'post-delete' post.pk%}" class="btn btn-danger">Delete</a>
-      {% endif %}
-
-      
-      <p>{{post.body}}</p>
-    </div>
-  </div>
-
-  <!-- this part takes care that user can add comments only on other people's posts  -->
-  {% if post.author != request.user %}
-  <div class="row justify-content-center mt-3 mb-5">
-    <div class="col-md-5 col-sm-12 border-bottom">
-      <form method="POST">
-        {% csrf_token %} {{form|crispy}}
-        <div class="d-grid gap-2 align-center">
-          <button class="btn btn-primary mt-3">Add comment</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  {% endif %}
-  
-  
-  <!-- listing on the comments on the posts  -->
-  {% for c1 in comments %}
-  <div class="row justify-content-center mt-3">
-    <div class="col-md-5 col-sm-12 border-bottom">
-      <p><strong>{{c1.author}}</strong>{{c1.created_on}}</p>
-      <p>{{c1.comment}}</p>
-      <!-- users can delete their own comments on other people's posts  -->
-      {% if request.user == post.author %}
-      <a href="{% url 'comment-delete' post_pk=post.pk pk=c1.pk %}" class="btn btn-danger">Delete</a>
-      {% endif %}
-    </div>
-  </div>
-  {% endfor %}
-</div>
-
-{% endblock %}
->>>>>>> 2cf088b9dfe183ee88112c64429bcd749f1f8b01
