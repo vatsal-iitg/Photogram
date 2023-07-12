@@ -12,3 +12,7 @@ We created a social media web app in Django. The key features of this applicatio
 - **Messaging** - Users can chat with other users as well.
 
 Here is a brief demo of what our application does :-
+
+
+https://github.com/vatsal-iitg/Photogram/assets/128295847/4348cdfa-8a01-4447-9bc1-f788dc72a4cf
+
